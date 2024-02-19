@@ -1,0 +1,59 @@
+<header>
+    <a href="/jsp/home" class="logo"><img alt="Artexpo" title="Artexpo" src="/img/library_logo.png"></a>
+    <div class="languages">
+        <a href="?language=ua"><img alt="In Russian" title="In Ukrainian" src="/img/ua.png"></a>
+        <a href="?language=en"><img alt="In English" title="In English" src="/img/gb.png"></a>
+    </div>
+    <div class="login-or-register-box">
+        <c:choose>
+            <c:when test="${empty user}">
+                <a href="/jsp/login"><fmt:message key="header_jspf.label.login" /></a>
+                |
+                <a href="/jsp/register"><fmt:message key="header_jspf.label.register" /></a>
+            </c:when>
+            <c:otherwise>
+                <fmt:message key="header_jspf.navbar.hello"/>, ${user.firstName}!
+            </c:otherwise>
+        </c:choose>
+    </div>
+    <nav class="navbar sticky-top navbar-light navbar-expand-md">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="/jsp/catalog"><fmt:message key="header_jspf.navbar.catalog" /></a></li>
+                <c:choose>
+                    <c:when test="${empty accountRole}">
+                        <li class="nav-item"><a class="nav-link" href="/jsp/login"><fmt:message key="header_jspf.navbar.cabinet" /></a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="nav-item"><a class="nav-link" href="/jsp/cabinet"><fmt:message key="header_jspf.navbar.cabinet" /></a></li>
+                    </c:otherwise>
+                </c:choose>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <c:choose>
+                    <c:when test="${empty user}">
+                    </c:when>
+                    <c:otherwise>
+                        <c:if test="${isAdmin == 'true'}">
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle nav-link" type="button" id="dropdownMenuButtonAdmin" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    <fmt:message key="header_jspf.navbar.administration" />
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonAdmin">
+                                    <li class="nav-item"><a class="nav-link" href="/jsp/admin/addBook"><fmt:message key="header_jspf.navbar.add_book" /></a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/jsp/admin/manageLibrarians"><fmt:message key="header_jspf.navbar.add_delete_librarians" /></a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/jsp/admin/manageAccounts"><fmt:message key="header_jspf.navbar.block_unblock_account" /></a></li>
+                                </div>
+                            </div>
+                        </c:if>
+                        <li class="nav-item"><a class="nav-link" href="/jsp/logout"><fmt:message key="header_jspf.navbar.logout" /></a></li>
+                    </c:otherwise>
+                </c:choose>
+            </ul>
+        </div>
+    </nav>
+</header>
