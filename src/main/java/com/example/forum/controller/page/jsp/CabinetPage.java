@@ -4,27 +4,32 @@ import com.example.forum.controller.annotation.PageAccessor;
 import com.example.forum.controller.annotation.PageAccessorType;
 import com.example.forum.controller.page.Page;
 import com.example.forum.entity.Post;
+import com.example.forum.entity.User;
 import com.example.forum.service.PostService;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.List;
 
-@PageAccessor(allowedTo = {PageAccessorType.NOT_LOGGED, PageAccessorType.USER, PageAccessorType.ADMIN})
-public class HomePage extends Page {
+@PageAccessor(allowedTo = {PageAccessorType.USER, PageAccessorType.ADMIN})
+public class CabinetPage extends Page {
 
     @Inject
     private PostService postService;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Post> postList = postService.findAll();
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
 
-        request.setAttribute("postList", postList);
+        List<Post> userPosts = postService.findAllByUser(user);
 
-        request.getRequestDispatcher("/WEB-INF/jsp/HomePage.jsp").forward(request, response);
+        request.setAttribute("userPosts", userPosts);
+
+        request.getRequestDispatcher("/WEB-INF/jsp/CabinetPage.jsp").forward(request, response);
     }
 }

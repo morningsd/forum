@@ -1,15 +1,15 @@
 <%@ include file="/WEB-INF/jspf/page.jspf" %>
 <html>
-<c:set var="title" value="Home"/>
+<c:set var="title" value="Cabinet"/>
 <%@ include file="/WEB-INF/jspf/head.jspf" %>
 <body>
 <div class="container">
     <%@ include file="/WEB-INF/jspf/header.jspf" %>
 
     <div>
-        <c:if test="${not empty postList}">
+        <c:if test="${not empty userPosts}">
             <ul class="list-group list-group-flush">
-                <c:forEach var="post" items="${postList}">
+                <c:forEach var="post" items="${userPosts}">
                     <div class="row d-flex justify-content-center mb-3">
                         <div class="col-md-8">
                             <li class="list-group-item">
@@ -34,14 +34,16 @@
                             <div class="col-xs-2 mr-1">
                                 <form class="" action="/jsp/editPost" method="get">
                                     <input type="hidden" name="post_id" value="${post.id}">
-                                    <button type="submit" class="btn btn-outline-primary"><fmt:message key="home_jsp.button.edit"/>
+                                    <button type="submit" class="btn btn-outline-primary"><fmt:message
+                                            key="home_jsp.button.edit"/>
                                     </button>
                                 </form>
                             </div>
                             <div class="col-xs-2">
                                 <form class="" action="/jsp/deletePost" method="post">
                                     <input type="hidden" name="post_id" value="${post.id}">
-                                    <button type="submit" class="btn btn-outline-danger"><fmt:message key="home_jsp.button.delete"/>
+                                    <button type="submit" class="btn btn-outline-danger"><fmt:message
+                                            key="home_jsp.button.delete"/>
                                     </button>
                                 </form>
                             </div>

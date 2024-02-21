@@ -1,27 +1,20 @@
 package com.example.forum.service;
 
-import com.example.forum.dao.TopicDao;
 import com.example.forum.entity.Topic;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Inject;
 
 import java.util.List;
 
-@RequestScoped
-public class TopicService {
+public interface TopicService {
 
-    @Inject
-    private TopicDao topicDao;
+    List<Topic> findAll();
 
-    public List<Topic> findAll() {
-        return topicDao.findAll();
-    }
+    void save(Topic topic);
 
-    public void save(Topic topic) {
-        topicDao.save(topic);
-    }
+    Topic findByName(String name);
 
-    public Topic findByName(String name) {
-        return topicDao.findByName(name);
-    }
+    Topic findById(int topicId);
+
+    void update(Topic topic);
+
+    void delete(int topicId);
 }

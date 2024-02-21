@@ -1,39 +1,26 @@
 <%@ include file="/WEB-INF/jspf/page.jspf" %>
 <html>
-<c:set var="title" value="Add post"/>
+<c:set var="title" value="Edit topic"/>
 <%@ include file="/WEB-INF/jspf/head.jspf" %>
 <body>
 <div class="container">
     <%@ include file="/WEB-INF/jspf/header.jspf" %>
 
     <form action="" method="post">
+        <input type="hidden" name="topic_id" value="${topic.id}">
         <div class="form-group">
-            <label for="title">Title:</label>
+            <label for="name">Name:</label>
             <input type="text" class="form-control"
-                   placeholder="Title"
-                   id="title" name="title" autocomplete="off">
+                   placeholder="Name"
+                   id="name" name="name" value="${topic.name}" autocomplete="off">
         </div>
         <div class="form-group">
-            <label for="content">Content:</label>
+            <label for="description">Description:</label>
             <textarea rows="5" cols="33" type="text" class="form-control"
-                   placeholder="Content"
-                   id="content" name="content" autocomplete="off"></textarea>
+                      placeholder="Description"
+                      id="description" name="description" autocomplete="off">${topic.description}</textarea>
         </div>
-        <c:if test="${not empty topicList}">
-            <div class="form-group">
-                <label>Topic:</label>
-                <label>
-                    <select class="custom-select" name="topic">
-                        <c:forEach var="topic" items="${topicList}">
-                            <option value="${topic.name}">
-                                    ${topic.name}
-                            </option>
-                        </c:forEach>
-                    </select>
-                </label>
-            </div>
-        </c:if>
-        <button type="submit" class="btn btn-primary">Add Post</button>
+        <button type="submit" class="btn btn-primary">Edit Topic</button>
     </form>
 
 

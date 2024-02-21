@@ -1,23 +1,24 @@
 <%@ include file="/WEB-INF/jspf/page.jspf" %>
 <html>
-<c:set var="title" value="Add post"/>
+<c:set var="title" value="Edit post"/>
 <%@ include file="/WEB-INF/jspf/head.jspf" %>
 <body>
 <div class="container">
     <%@ include file="/WEB-INF/jspf/header.jspf" %>
 
     <form action="" method="post">
+        <input type="hidden" name="post_id" value="${post.id}">
         <div class="form-group">
             <label for="title">Title:</label>
             <input type="text" class="form-control"
                    placeholder="Title"
-                   id="title" name="title" autocomplete="off">
+                   id="title" name="title" value="${post.title}" autocomplete="off">
         </div>
         <div class="form-group">
             <label for="content">Content:</label>
             <textarea rows="5" cols="33" type="text" class="form-control"
-                   placeholder="Content"
-                   id="content" name="content" autocomplete="off"></textarea>
+                      placeholder="Content"
+                      id="content" name="content" autocomplete="off">${post.content}</textarea>
         </div>
         <c:if test="${not empty topicList}">
             <div class="form-group">
@@ -25,15 +26,24 @@
                 <label>
                     <select class="custom-select" name="topic">
                         <c:forEach var="topic" items="${topicList}">
-                            <option value="${topic.name}">
-                                    ${topic.name}
-                            </option>
+                            <c:choose>
+                                <c:when test="${topic.name eq post.topic.name}">
+                                    <option value="${topic.name}" selected="selected">
+                                            ${topic.name}
+                                    </option>
+                                </c:when>
+                                <c:otherwise>
+                                    <option value="${topic.name}">
+                                            ${topic.name}
+                                    </option>
+                                </c:otherwise>
+                            </c:choose>
                         </c:forEach>
                     </select>
                 </label>
             </div>
         </c:if>
-        <button type="submit" class="btn btn-primary">Add Post</button>
+        <button type="submit" class="btn btn-primary">Edit Post</button>
     </form>
 
 

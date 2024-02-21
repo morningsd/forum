@@ -8,16 +8,16 @@
 
     <form action="" method="post">
         <div class="form-group">
-            <label for="name"><fmt:message key="addbook_jsp.label.name"/>:</label>
+            <label for="name">Name:</label>
             <input type="text" class="form-control" placeholder="<fmt:message key="addbook_jsp.placeholder.name" />"
                    id="name" name="name" autocomplete="off">
         </div>
         <div class="form-group">
-            <label for="description"><fmt:message key="addbook_jsp.label.author"/>:</label>
-            <input type="text" class="form-control" placeholder="Description<fmt:message key="addbook_jsp.placeholder.author" />"
-                   id="description" name="description" autocomplete="off">
+            <label for="description">Description:</label>
+            <textarea rows="5" cols="33" type="text" class="form-control" placeholder="Enter description"
+                   id="description" name="description" autocomplete="off"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Add topic<fmt:message key="addbook_jsp.button.add"/></button>
+        <button type="submit" class="btn btn-primary">Add topic</button>
     </form>
 
 

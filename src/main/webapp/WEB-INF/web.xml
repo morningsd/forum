@@ -87,12 +87,76 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>PostPageServlet</servlet-name>
+        <servlet-class>com.example.forum.controller.page.jsp.PostPage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PostPageServlet</servlet-name>
+        <url-pattern>/jsp/post</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>NotFoundPageServlet</servlet-name>
         <servlet-class>com.example.forum.controller.page.jsp.NotFoundPage</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>NotFoundPageServlet</servlet-name>
         <url-pattern>/jsp/notFound</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EditPostPageServlet</servlet-name>
+        <servlet-class>com.example.forum.controller.page.jsp.EditPostPage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditPostPageServlet</servlet-name>
+        <url-pattern>/jsp/editPost</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeletePostPageServlet</servlet-name>
+        <servlet-class>com.example.forum.controller.page.jsp.DeletePostPage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeletePostPageServlet</servlet-name>
+        <url-pattern>/jsp/deletePost</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EditTopicPageServlet</servlet-name>
+        <servlet-class>com.example.forum.controller.page.jsp.EditTopicPage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditTopicPageServlet</servlet-name>
+        <url-pattern>/jsp/editTopic</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteTopicPageServlet</servlet-name>
+        <servlet-class>com.example.forum.controller.page.jsp.DeleteTopicPage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteTopicPageServlet</servlet-name>
+        <url-pattern>/jsp/deleteTopic</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>TopicsPageServlet</servlet-name>
+        <servlet-class>com.example.forum.controller.page.jsp.TopicsPage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TopicsPageServlet</servlet-name>
+        <url-pattern>/jsp/topics</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CabinetPageServlet</servlet-name>
+        <servlet-class>com.example.forum.controller.page.jsp.CabinetPage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CabinetPageServlet</servlet-name>
+        <url-pattern>/jsp/cabinet</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -103,6 +167,36 @@
         <servlet-name>ErrorPageServlet</servlet-name>
         <url-pattern>/jsp/error</url-pattern>
     </servlet-mapping>
+
+    <filter>
+        <filter-name>ExceptionHandlerFilter</filter-name>
+        <filter-class>com.example.forum.controller.filter.ExceptionHandlerFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ExceptionHandlerFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>StaticFilter</filter-name>
+        <filter-class>com.example.forum.controller.filter.StaticFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>StaticFilter</filter-name>
+        <url-pattern>/css/*</url-pattern>
+        <url-pattern>/js/*</url-pattern>
+        <url-pattern>/img/*</url-pattern>
+        <url-pattern>/favicon.ico</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>SecurityFilter</filter-name>
+        <filter-class>com.example.forum.controller.filter.SecurityFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SecurityFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
     <filter>
         <filter-name>SessionLocaleFilter</filter-name>

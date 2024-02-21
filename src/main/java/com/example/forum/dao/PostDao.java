@@ -1,44 +1,22 @@
 package com.example.forum.dao;
 
 import com.example.forum.entity.Post;
-import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.PersistenceContext;
+import com.example.forum.entity.User;
 import jakarta.transaction.Transactional;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-@RequestScoped
-public class PostDao {
+public interface PostDao {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PostDao.class);
+    List<Post> findAll();
 
-    @PersistenceContext
-    private EntityManager manager;
+    Post findById(int id);
 
-    public List<Post> findAll() {
-        return manager.createQuery("SELECT p FROM Post p", Post.class)
-                .getResultList();
-    }
+    void save(Post post);
 
-    public Post findById(int id) {
-        return manager.find(Post.class, id);
-    }
+    void update(Post newPost);
 
-    @Transactional
-    public void save(Post post) {
-        manager.persist(post);
-    }
+    List<Post> findAllByUser(User user);
 
-    @Transactional
-    public void update(Post newPost) {
-        Post oldPost = findById(newPost.getId());
-        oldPost.setTitle(newPost.getTitle());
-        oldPost.setContent(newPost.getContent());
-    }
-
+    void delete(int postId);
 }
