@@ -1,0 +1,7 @@
+create-jdbc-connection-pool
+   --restype javax.sql.DataSource
+   --datasourceclassname org.postgresql.ds.PGSimpleDataSource
+   --property "user=postgres:password=komodorro:url=jdbc\\:postgresql\\://192.168.0.101\\:5432/forum" PostgresqlPool
+
+create-jdbc-resource --connectionpoolid PostgresqlPool jdbc/forum
+

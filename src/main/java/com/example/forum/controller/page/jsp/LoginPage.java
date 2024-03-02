@@ -42,7 +42,7 @@ public class LoginPage extends Page {
         HttpSession session = request.getSession();
         session.setAttribute("user", user);
 
-        response.sendRedirect("/jsp/home");
+        response.sendRedirect(request.getContextPath() + "/jsp/home");
     }
 
 }

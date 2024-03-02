@@ -1,5 +1,8 @@
 package com.example.forum.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -20,6 +23,7 @@ import org.hibernate.proxy.HibernateProxy;
 
 import java.util.Objects;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 @Table(name = "post")
 @SuperBuilder
@@ -29,6 +33,7 @@ import java.util.Objects;
 @AllArgsConstructor
 public class Post extends AuditableEntity{
 
+    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -46,10 +51,12 @@ public class Post extends AuditableEntity{
     @Column(name = "votes", nullable = false)
     private Integer votes;
 
+    @JsonBackReference(value = "topic-posts")
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "topic_id", nullable = false)
     private Topic topic;
 
+    @JsonBackReference(value = "user-posts")
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;

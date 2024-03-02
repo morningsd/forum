@@ -8,7 +8,7 @@ public interface TopicService {
 
     List<Topic> findAll();
 
-    void save(Topic topic);
+    Topic save(Topic topic);
 
     Topic findByName(String name);
 

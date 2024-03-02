@@ -15,7 +15,7 @@
         </div>
         <div class="form-group">
             <label for="content">Content:</label>
-            <textarea rows="5" cols="33" type="text" class="form-control"
+            <textarea style="white-space: pre-wrap;" rows="5" cols="33" type="text" class="form-control"
                    placeholder="Content"
                    id="content" name="content" autocomplete="off"></textarea>
         </div>

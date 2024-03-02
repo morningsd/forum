@@ -20,14 +20,15 @@ public class ExceptionHandlerFilter extends HttpFilter {
             if (e instanceof PageNotFoundException) {
                 response.sendRedirect("/jsp/notFound");
             } else {
-                Throwable rootCause = e;
-                while (rootCause.getCause() != null && rootCause.getCause() != rootCause) {
-                    rootCause = rootCause.getCause();
-                }
-                String rootCauseMessage = rootCause.getMessage();
-                HttpSession session = request.getSession();
-                session.setAttribute("errorMessage", rootCauseMessage);
-                response.sendRedirect("/jsp/error");
+//                Throwable rootCause = e;
+//                while (rootCause.getCause() != null && rootCause.getCause() != rootCause) {
+//                    rootCause = rootCause.getCause();
+//                }
+//                String rootCauseMessage = rootCause.getMessage();
+//                HttpSession session = request.getSession();
+//                session.setAttribute("errorMessage", rootCauseMessage);
+//                response.sendRedirect("/jsp/error");
+                throw e;
             }
         }
     }

@@ -37,7 +37,9 @@ public class SecurityFilter extends HttpFilter {
                 })
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
-        String requestURI = request.getRequestURI();
+        String contextPath = request.getContextPath();
+        int length = contextPath.length();
+        String requestURI = request.getRequestURI().substring(length);
         String className = mappingsToClassNames.get(requestURI);
 
         if (className == null) {

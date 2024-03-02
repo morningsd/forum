@@ -19,8 +19,10 @@ public class StaticFilter extends HttpFilter {
     protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         response.setCharacterEncoding(StandardCharsets.UTF_8.name());
 
+        String contextPath = request.getContextPath();
+        int length = contextPath.length();
         ServletContext context = getServletContext();
-        String uri = request.getRequestURI();
+        String uri = request.getRequestURI().substring(length);
 
         String realPath = context.getRealPath("/");
         File file = new File(new File(realPath, PATH_TO_SOURCE_STATIC_FILES_DIR), uri);

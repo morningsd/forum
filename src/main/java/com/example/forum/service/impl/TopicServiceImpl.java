@@ -19,8 +19,9 @@ public class TopicServiceImpl implements TopicService {
         return topicDao.findAll();
     }
 
-    public void save(Topic topic) {
+    public Topic save(Topic topic) {
         topicDao.save(topic);
+        return topic;
     }
 
     public Topic findByName(String name) {

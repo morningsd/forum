@@ -1,9 +1,9 @@
 package com.example.forum.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,13 +21,16 @@ import java.time.Instant;
 @AllArgsConstructor
 public class AuditableEntity {
 
-    @Column(name = "created_by", nullable = false)
+    @JsonIgnore
+    @Column(name = "created_by")
     private String createdBy;
 
+    @JsonIgnore
     @CreationTimestamp
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at")
     private Instant createdAt;
 
+    @JsonIgnore
     @UpdateTimestamp
     @Column(name = "updated_at")
     private Instant updatedAt;

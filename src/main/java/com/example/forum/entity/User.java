@@ -1,6 +1,9 @@
 package com.example.forum.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -20,6 +23,7 @@ import lombok.Setter;
 
 import java.util.Set;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 @Table(name = "\"user\"")
 @Builder
@@ -48,6 +52,7 @@ public class User {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
+    @JsonIgnore
     @NotBlank
     @Size(max = 256)
     @Column(name = "password", nullable = false)
@@ -57,6 +62,7 @@ public class User {
     @Column(name = "role", nullable = false)
     private Role role;
 
+    @JsonManagedReference(value = "user-posts")
     @OneToMany(mappedBy = "user")
     private Set<Post> posts;
 }

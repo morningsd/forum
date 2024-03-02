@@ -12,7 +12,7 @@
                 <h5 class="mb-1"><i class="bi bi-book"> ${post.title}</i></h5>
 <%--                <small>Votes: ${post.votes}</small>--%>
             </div>
-            <p>
+            <p style="overflow: auto">
                 ${post.content}
             </p>
             <p class="mb-1 w-100 justify-content-between d-flex">
